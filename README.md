@@ -1,4 +1,4 @@
-# XLOCK-File-Locker
+# XLOCK File Locker
 A simple file locker I made with 2Toad's Rijndael256 encryption library, and DarkByte7's VisualPlus controls.
 # How to use 
 - Encrypting files:
