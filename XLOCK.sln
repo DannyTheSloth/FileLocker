@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XLOCK", "XLOCK\XLOCK.csproj", "{F3842735-B28F-4D0D-85E0-21EDBB89D01D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3842735-B28F-4D0D-85E0-21EDBB89D01D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3842735-B28F-4D0D-85E0-21EDBB89D01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3842735-B28F-4D0D-85E0-21EDBB89D01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3842735-B28F-4D0D-85E0-21EDBB89D01D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C9C6D22-D150-4912-88DA-194DCC401C2C}
+	EndGlobalSection
+EndGlobal
