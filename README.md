@@ -9,3 +9,6 @@ To decrypt a file select the file, fill in the password you encrypted it with un
 To delete a file from XLOCK, select the file and press the delete button. Always back your files up, kids.
 - Opening files
 Select the file, and hit the 'Open Selected File' button.
+
+![xlock](https://user-images.githubusercontent.com/39781618/50059249-008da000-014a-11e9-81c5-a7d93e7f7689.PNG)
+
