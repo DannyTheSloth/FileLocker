@@ -7,10 +7,10 @@ To encrypt a file, press the 'Open Folder' button, then drag and drop your file 
 - Decrypting files:
 
 To decrypt a file select the file, fill in the password you encrypted it with under the 'Encryption Password' label, and hit decrypt. 
-- Deleting files 
+- Deleting files:
 
 To delete a file from XLOCK, select the file and press the delete button. Always back your files up, kids.
-- Opening files
+- Opening files:
 
 Select the file, and hit the 'Open Selected File' button.
 
