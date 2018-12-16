@@ -74,25 +74,30 @@ namespace XLOCK
             try { ToEncrypt = FilePath + lbFiles.SelectedItem.ToString(); }
             catch (Exception) { MessageBox.Show("You must select an item to encrypt or decrypt!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (string.IsNullOrWhiteSpace(txtPassword.Text)) { MessageBox.Show("You must enter a password to decrypt or encrypt files!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+            if (txtPassword.Text.Length < 6) { DialogResult dr = MessageBox.Show("Are you sure you would like to use this password? Any password less than 6 characters is deemed unsecure.", "Password Unsecure", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation); if (dr == DialogResult.No) { return; } }
             string Password = txtPassword.Text;
-            string Output = FilePath + lbFiles.SelectedItem.ToString() + ".Encrypted";
-            if (Path.GetExtension(ToEncrypt) == ".Encrypted") { MessageBox.Show("File is already encrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } else { }
+            string Output = FilePath + lbFiles.SelectedItem.ToString() + ".encrypted";
+            if (Path.GetExtension(ToEncrypt).ToLower() == ".encrypted") { MessageBox.Show("File is already encrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } else { }
             Rijndael.Encrypt(ToEncrypt, Output, txtPassword.Text, KeySize.Aes256);
             File.Delete(ToEncrypt);
             WriteToConsole("Encrypted file successfully");
         }
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
-            string ToDecrypt;
-            try { ToDecrypt = FilePath + lbFiles.SelectedItem.ToString(); }
-            catch (Exception) { MessageBox.Show("You must select an item to encrypt or decrypt!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            if (string.IsNullOrWhiteSpace(txtPassword.Text)) { MessageBox.Show("You must enter a password to decrypt or encrypt files!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            string Password = txtPassword.Text;
-            string Output = FilePath + Path.GetFileNameWithoutExtension(ToDecrypt);
-            if (Path.GetExtension(ToDecrypt) == ".Encrypted") { } else { MessageBox.Show("File is already decrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }          
-            Rijndael.Decrypt(ToDecrypt, Output, txtPassword.Text, KeySize.Aes256);
-            File.Delete(ToDecrypt);
-            WriteToConsole("Decrypted file successfully");
+            string ToDecrypt = "";
+            try
+            {
+                
+                try { ToDecrypt = FilePath + lbFiles.SelectedItem.ToString(); }
+                catch (Exception) { MessageBox.Show("You must select an item to encrypt or decrypt!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+                if (string.IsNullOrWhiteSpace(txtPassword.Text)) { MessageBox.Show("You must enter a password to decrypt or encrypt files!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+                string Password = txtPassword.Text;
+                if (Path.GetExtension(ToDecrypt).ToLower() == ".encrypted") { } else { MessageBox.Show("File is already decrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+                string Output = FilePath + Path.GetFileNameWithoutExtension(ToDecrypt);              
+                Rijndael.Decrypt(ToDecrypt, Output, txtPassword.Text, KeySize.Aes256);
+                File.Delete(ToDecrypt);
+                WriteToConsole("Decrypted file successfully");
+            } catch { File.Delete(FilePath + Path.GetFileNameWithoutExtension(ToDecrypt)); }
         }
         private void btnOpenFolder_Click(object sender, EventArgs e)
         {
@@ -101,10 +106,23 @@ namespace XLOCK
                 Process.Start(FilePath + lbFiles.SelectedItem.ToString());
             } catch { }
         }
-
         private void btnOpenFolder_Click_1(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", FilePath);
+        }
+        private void lbFiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                string SelectedFile = "";
+                try { SelectedFile = lbFiles.SelectedItem.ToString(); } catch { return; }
+                File.Delete(FilePath + SelectedFile);
+            }
+        }
+
+        private void lblVisit_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/DannyTheSloth/XLock-File-Locker");
         }
     }
 }

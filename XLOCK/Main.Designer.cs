@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.lbFiles = new VisualPlus.Toolkit.Controls.DataManagement.VisualListBox();
             this.btnDecrypt = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.btnEncrypt = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
@@ -40,6 +41,8 @@
             this.btnOpenFile = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.btnOpenFolder = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.lblConsole = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
+            this.lblVisit = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbFiles
@@ -60,10 +63,10 @@
             this.lbFiles.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
             this.lbFiles.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(62)))));
-            this.lbFiles.Location = new System.Drawing.Point(199, 96);
+            this.lbFiles.Location = new System.Drawing.Point(198, 93);
             this.lbFiles.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.lbFiles.Name = "lbFiles";
-            this.lbFiles.Size = new System.Drawing.Size(205, 108);
+            this.lbFiles.Size = new System.Drawing.Size(205, 111);
             this.lbFiles.TabIndex = 0;
             this.lbFiles.Text = "Files";
             this.lbFiles.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -73,6 +76,7 @@
             this.lbFiles.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.lbFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbFiles_KeyDown);
             // 
             // btnDecrypt
             // 
@@ -90,7 +94,7 @@
             this.btnDecrypt.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnDecrypt.ForeColor = System.Drawing.Color.White;
             this.btnDecrypt.Image = null;
-            this.btnDecrypt.Location = new System.Drawing.Point(101, 54);
+            this.btnDecrypt.Location = new System.Drawing.Point(101, 51);
             this.btnDecrypt.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnDecrypt.Name = "btnDecrypt";
             this.btnDecrypt.Size = new System.Drawing.Size(84, 23);
@@ -122,7 +126,7 @@
             this.btnEncrypt.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnEncrypt.ForeColor = System.Drawing.Color.White;
             this.btnEncrypt.Image = null;
-            this.btnEncrypt.Location = new System.Drawing.Point(12, 54);
+            this.btnEncrypt.Location = new System.Drawing.Point(12, 51);
             this.btnEncrypt.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(86, 23);
@@ -169,7 +173,7 @@
             this.txtPassword.ImageSize = new System.Drawing.Size(16, 16);
             this.txtPassword.ImageVisible = false;
             this.txtPassword.ImageWidth = 35;
-            this.txtPassword.Location = new System.Drawing.Point(12, 25);
+            this.txtPassword.Location = new System.Drawing.Point(12, 22);
             this.txtPassword.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '\0';
@@ -214,14 +218,14 @@
             this.txtConsole.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
             this.txtConsole.Border.Visible = true;
             this.txtConsole.ForeColor = System.Drawing.Color.White;
-            this.txtConsole.Location = new System.Drawing.Point(12, 96);
+            this.txtConsole.Location = new System.Drawing.Point(12, 93);
             this.txtConsole.MaxLength = 2147483647;
             this.txtConsole.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.txtConsole.Name = "txtConsole";
             this.txtConsole.ReadOnly = true;
             this.txtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtConsole.ShowSelectionMargin = false;
-            this.txtConsole.Size = new System.Drawing.Size(173, 108);
+            this.txtConsole.Size = new System.Drawing.Size(173, 111);
             this.txtConsole.TabIndex = 5;
             this.txtConsole.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.txtConsole.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -235,7 +239,7 @@
             // 
             this.lblFiles.AutoSize = true;
             this.lblFiles.ForeColor = System.Drawing.Color.White;
-            this.lblFiles.Location = new System.Drawing.Point(195, 80);
+            this.lblFiles.Location = new System.Drawing.Point(195, 77);
             this.lblFiles.Name = "lblFiles";
             this.lblFiles.Size = new System.Drawing.Size(31, 13);
             this.lblFiles.TabIndex = 6;
@@ -261,7 +265,7 @@
             this.btnOpenFile.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnOpenFile.ForeColor = System.Drawing.Color.White;
             this.btnOpenFile.Image = null;
-            this.btnOpenFile.Location = new System.Drawing.Point(198, 54);
+            this.btnOpenFile.Location = new System.Drawing.Point(198, 51);
             this.btnOpenFile.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnOpenFile.Name = "btnOpenFile";
             this.btnOpenFile.Size = new System.Drawing.Size(205, 23);
@@ -293,7 +297,7 @@
             this.btnOpenFolder.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
             this.btnOpenFolder.Image = null;
-            this.btnOpenFolder.Location = new System.Drawing.Point(198, 25);
+            this.btnOpenFolder.Location = new System.Drawing.Point(198, 22);
             this.btnOpenFolder.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnOpenFolder.Name = "btnOpenFolder";
             this.btnOpenFolder.Size = new System.Drawing.Size(205, 23);
@@ -313,18 +317,41 @@
             // 
             this.lblConsole.AutoSize = true;
             this.lblConsole.ForeColor = System.Drawing.Color.White;
-            this.lblConsole.Location = new System.Drawing.Point(9, 80);
+            this.lblConsole.Location = new System.Drawing.Point(9, 77);
             this.lblConsole.Name = "lblConsole";
             this.lblConsole.Size = new System.Drawing.Size(48, 13);
             this.lblConsole.TabIndex = 9;
             this.lblConsole.Text = "Console:";
+            // 
+            // lblVersion
+            // 
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.ForeColor = System.Drawing.Color.White;
+            this.lblVersion.Location = new System.Drawing.Point(381, 207);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(22, 13);
+            this.lblVersion.TabIndex = 10;
+            this.lblVersion.Text = "0.1";
+            // 
+            // lblVisit
+            // 
+            this.lblVisit.AutoSize = true;
+            this.lblVisit.ForeColor = System.Drawing.Color.White;
+            this.lblVisit.Location = new System.Drawing.Point(9, 207);
+            this.lblVisit.Name = "lblVisit";
+            this.lblVisit.Size = new System.Drawing.Size(129, 13);
+            this.lblVisit.TabIndex = 11;
+            this.lblVisit.Text = "Visit this project on Github";
+            this.lblVisit.Click += new System.EventHandler(this.lblVisit_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(35)))));
-            this.ClientSize = new System.Drawing.Size(416, 216);
+            this.ClientSize = new System.Drawing.Size(416, 223);
+            this.Controls.Add(this.lblVisit);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblConsole);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.btnOpenFile);
@@ -336,6 +363,7 @@
             this.Controls.Add(this.btnDecrypt);
             this.Controls.Add(this.lbFiles);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "XLOCK - File Locker";
             this.Load += new System.EventHandler(this.Main_Load);
@@ -357,6 +385,8 @@
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton btnOpenFile;
         private VisualPlus.Toolkit.Controls.Interactivity.VisualButton btnOpenFolder;
         private System.Windows.Forms.Label lblConsole;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label lblVisit;
     }
 }
 
