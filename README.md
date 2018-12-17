@@ -16,3 +16,6 @@ Select the file, and hit the 'Open Selected File' button.
 
 ![xlock](https://user-images.githubusercontent.com/39781618/50059249-008da000-014a-11e9-81c5-a7d93e7f7689.PNG)
 
+# Using the shell
+Start by typing in '-' into the command line, as the dash character is the prefix for the commands. A suggestion menu should pop up, use the arrow keys to navigate, and press enter to append the text to the command line. 
+
