@@ -3,10 +3,10 @@ A simple file locker I made with 2Toad's Rijndael256 encryption library, and Dar
 # How to use 
 - Encrypting files:
 
-To encrypt a file, press the 'Open Folder' button, then drag and drop your file into the folder that opened. You can now close the folder. Fill in an encryption passwor under the 'Encryption Password' label, if the file is important, write your password down somewhere. Click on the file name that appears under the 'Files' label in the gray box, and hit encrypt, wait for a .encrypted extension to appear at the end of the file. Please note, removing this extension will not make the file of any use, it just means the program won't be able to read it correctly. 
+To encrypt a file, drag the file you want to encrypt into the gray box labeled 'Files', then fill in a password of atleast 6 characters under the 'Encryption Password' field. Now click on the file that appeared in the gray box you dragged your file into and hit encrypt.
 - Decrypting files:
 
-To decrypt a file select the file, fill in the password you encrypted it with under the 'Encryption Password' label, and hit decrypt. 
+To decrypt a file, click on the file, fill in the password you encrypted it with under the 'Encryption Password' field, and hit decrypt. 
 - Deleting files:
 
 To delete a file from XLOCK, select the file and press the delete button. Always back your files up, kids.
