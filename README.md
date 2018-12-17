@@ -22,9 +22,15 @@ To open files, select the file, and hit the 'Open Selected File' button.
 # Using the shell
 Start by typing in '-' into the command line located under the console, as the dash character is the prefix for the commands. A suggestion menu should pop up, use the arrow keys to navigate, and press enter to append the text to the command line. 
 **Commands:**
+
 -DeleteFile(Filename) *Deletes a specified file in the XLOCKFiles folder in case the delete feature doesn't work*
+
 -DeleteAllFiles() *Mass deletes all files in the XLOCKFiles folder*
+
 -GetMD5(Filename) *Calculates MD5 checksum of specified file from the XLOCKFiles folder*
+
 -ViewFile(Filename) *Opens file with default opening program in XLOCKFiles folder in case the open selected file does not work*
+
 -ClearConsole() *Clears console*
+
 -RickRoll() *Plays Never Gonna Give You Up By Rick Astley*
