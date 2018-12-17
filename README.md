@@ -14,8 +14,8 @@ To delete a file from XLOCK, select the file and press the delete button. Always
 
 Select the file, and hit the 'Open Selected File' button.
 
-![xlock](https://user-images.githubusercontent.com/39781618/50059249-008da000-014a-11e9-81c5-a7d93e7f7689.PNG)
+![capture](https://user-images.githubusercontent.com/39781618/50071962-3312b980-0199-11e9-8eed-1968cd4cbbe5.PNG)
 
 # Using the shell
-Start by typing in '-' into the command line, as the dash character is the prefix for the commands. A suggestion menu should pop up, use the arrow keys to navigate, and press enter to append the text to the command line. 
+Start by typing in '-' into the command line located under the console, as the dash character is the prefix for the commands. A suggestion menu should pop up, use the arrow keys to navigate, and press enter to append the text to the command line. 
 
