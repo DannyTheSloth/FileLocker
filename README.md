@@ -2,17 +2,20 @@
 A simple file locker I made with 2Toad's Rijndael256 encryption library, and DarkByte7's VisualPlus controls.
 # How to use 
 
+**Adding files:**
+To add files, drag the file you want in XLOCK into the gray box labeled with 'Files', this is how you will interact with files in the 'XLOCKFiles' folder.
+
 **Encrypting files:**
-To encrypt a file, drag the file you want to encrypt into the gray box labeled 'Files', then fill in a password of atleast 6 characters under the 'Encryption Password' field. Now click on the file that appeared in the gray box you dragged your file into and hit encrypt.
+To encrypt a file, fill in a password of atleast 6 characters under the 'Encryption Password' field, click on the file, and hit encrypt.
 
 **Decrypting files:**
 To decrypt a file, click on the file, fill in the password you encrypted it with under the 'Encryption Password' field, and hit decrypt.
 
 **Deleting files:**
-To delete a file from XLOCK, select the file and press the delete button. Always back your files up, kids.
+To delete a file from XLOCK, select the file, and press the delete button. Always back your files up, kids.
 
 **Opening files:**
-Select the file, and hit the 'Open Selected File' button.
+To open files, select the file, and hit the 'Open Selected File' button.
 
 ![capture](https://user-images.githubusercontent.com/39781618/50071962-3312b980-0199-11e9-8eed-1968cd4cbbe5.PNG)
 
