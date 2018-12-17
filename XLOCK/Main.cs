@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.IO;
 using Rijndael256;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using Rijndael = Rijndael256.Rijndael;
+using System.Net;
 
 namespace XLOCK
 {
@@ -19,6 +22,7 @@ namespace XLOCK
         {
             InitializeComponent();
         }
+        Rijndael256.KeySize KS = new Rijndael256.KeySize();
         public readonly string FilePath = Environment.CurrentDirectory + @"\XLOCKFiles\";
         private void WriteToConsole(string ToWrite)
         {
@@ -43,6 +47,7 @@ namespace XLOCK
         }
         private void Main_Load(object sender, EventArgs e)
         {
+            KS = KeySize.Aes256;
             CheckFolder();
             Update.Start();
         }
@@ -78,7 +83,7 @@ namespace XLOCK
             string Password = txtPassword.Text;
             string Output = FilePath + lbFiles.SelectedItem.ToString() + ".encrypted";
             if (Path.GetExtension(ToEncrypt).ToLower() == ".encrypted") { MessageBox.Show("File is already encrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } else { }
-            Rijndael.Encrypt(ToEncrypt, Output, txtPassword.Text, KeySize.Aes256);
+            Rijndael.Encrypt(ToEncrypt, Output, txtPassword.Text, KS);
             File.Delete(ToEncrypt);
             WriteToConsole("Encrypted file successfully");
         }
@@ -94,7 +99,7 @@ namespace XLOCK
                 string Password = txtPassword.Text;
                 if (Path.GetExtension(ToDecrypt).ToLower() == ".encrypted") { } else { MessageBox.Show("File is already decrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                 string Output = FilePath + Path.GetFileNameWithoutExtension(ToDecrypt);              
-                Rijndael.Decrypt(ToDecrypt, Output, txtPassword.Text, KeySize.Aes256);
+                Rijndael.Decrypt(ToDecrypt, Output, txtPassword.Text, KS);
                 File.Delete(ToDecrypt);
                 WriteToConsole("Decrypted file successfully");
             } catch { File.Delete(FilePath + Path.GetFileNameWithoutExtension(ToDecrypt)); }
@@ -104,6 +109,7 @@ namespace XLOCK
             try
             {
                 Process.Start(FilePath + lbFiles.SelectedItem.ToString());
+                WriteToConsole("Opened " + lbFiles.SelectedItem.ToString());
             } catch { }
         }
         private void btnOpenFolder_Click_1(object sender, EventArgs e)
@@ -123,6 +129,135 @@ namespace XLOCK
         private void lblVisit_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/DannyTheSloth/XLock-File-Locker");
+        }
+        private void CheckCommand(string Command)
+        {
+            if (Command.Contains("-ViewFile") && Command.Contains("(") && Command.Contains(")"))
+            {
+                foreach (var item in lbFiles.Items)
+                {
+                    string Item = item.ToString();
+                    if (txtShell.Text.Contains(Item))
+                    {
+                        Process.Start(FilePath + Item);
+                        WriteToConsole("Opened " + Path.GetFileName(Item));
+                        txtShell.Text = "";
+                    }
+                }
+                
+            } else
+            if (Command.Contains("-GetMD5") && Command.Contains("(") && Command.Contains(")"))
+            {
+                foreach (var item in lbFiles.Items)
+                {
+                    string Item = item.ToString();
+                    if (txtShell.Text.Contains(Item))
+                    {
+                        using (var MD5Calc = MD5.Create())
+                        {
+                            using (var Stream = File.OpenRead(FilePath + Item))
+                            {
+                                WriteToConsole("MD5 Checksum: " + BitConverter.ToString(MD5Calc.ComputeHash(Stream)).Replace("-", "").ToLowerInvariant());
+                                txtShell.Text = "";
+                                Stream.Close();
+                            }
+                            MD5Calc.Clear();
+                        }
+                        
+                    }
+                }
+                
+            } else
+            if (Command.Contains("-DeleteFile") && Command.Contains("(") && Command.Contains(")"))
+            {
+                foreach (var item in lbFiles.Items)
+                {
+                    string Item = item.ToString();
+                    if (txtShell.Text.Contains(Item))
+                    {
+                        File.Delete(FilePath + Item);
+                        WriteToConsole("Deleted " + Item);
+                        txtShell.Text = "";
+                    }
+                    
+                }
+                
+               
+            } else
+            if (Command.Contains("-SetKeySize"))
+            {
+                    if (Command.Contains("(256)"))
+                    {
+                        KS = KeySize.Aes256;
+                        WriteToConsole("KeySize set to 256 bits");
+                    txtShell.Text = "";
+                    return;
+                    }
+                    if (Command.Contains("(192)"))
+                    {
+                        KS = KeySize.Aes192;
+                        WriteToConsole("KeySize set to 192 bits");
+                    txtShell.Text = "";
+                    return;
+                    }
+                    if (Command.Contains("(128)"))
+                    {
+                        KS = KeySize.Aes128;
+                        WriteToConsole("KeySize set to 128 bits");
+                    txtShell.Text = "";
+                    return;
+                    }
+                    else { MessageBox.Show("Key size must be 256, 192, or 128!", "Error"); return; }
+            } else 
+            if (Command.Equals("-ClearConsole()"))
+            {
+                txtConsole.Clear();
+                txtShell.Text = "";
+            } else
+            if (Command.Equals("-DeleteAllFiles()"))
+            {
+                DirectoryInfo Files = new DirectoryInfo(FilePath);
+                foreach (var file in Files.GetFiles())
+                {
+                    WriteToConsole("Deleted " + Path.GetFileName(file.FullName).ToString());
+                    File.Delete(file.FullName);
+                }
+                txtShell.Text = "";
+            } else 
+            if (Command.Equals("-RickRoll()")) 
+            {
+                WriteToConsole("Never Gonna Give You Up");
+                Process.Start("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
+                txtShell.Text = "";
+            } else { MessageBox.Show("Invalid Command", "Error"); return; }
+        }                      
+        private void txtShell_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (String.IsNullOrWhiteSpace(txtShell.Text) && !txtShell.Text.Contains("-")) { MessageBox.Show("Invalid Command", "Error"); return; } else
+                {
+                    CheckCommand(txtShell.Text);
+                }
+            }
+        }
+        private void txtShell_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void FileDropped(object sender, DragEventArgs e)
+        {
+            string[] FilesDropped = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            foreach (var file in FilesDropped)
+            {
+                File.Copy(Path.GetFullPath(file), FilePath + Path.GetFileName(file));
+                WriteToConsole("Copied " + Path.GetFileName(file) + " into XLOCKFiles");
+            }
+
+        }
+        private void lbFiles_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
         }
     }
 }

@@ -43,10 +43,12 @@
             this.lblConsole = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblVisit = new System.Windows.Forms.Label();
+            this.txtShell = new VisualPlus.Toolkit.Controls.Editors.VisualTextBox();
             this.SuspendLayout();
             // 
             // lbFiles
             // 
+            this.lbFiles.AllowDrop = true;
             this.lbFiles.AlternateColors = false;
             this.lbFiles.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
             this.lbFiles.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
@@ -76,6 +78,8 @@
             this.lbFiles.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.lbFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.FileDropped);
+            this.lbFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbFiles_DragEnter);
             this.lbFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbFiles_KeyDown);
             // 
             // btnDecrypt
@@ -225,7 +229,7 @@
             this.txtConsole.ReadOnly = true;
             this.txtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtConsole.ShowSelectionMargin = false;
-            this.txtConsole.Size = new System.Drawing.Size(173, 111);
+            this.txtConsole.Size = new System.Drawing.Size(173, 82);
             this.txtConsole.TabIndex = 5;
             this.txtConsole.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.txtConsole.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -331,7 +335,7 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(22, 13);
             this.lblVersion.TabIndex = 10;
-            this.lblVersion.Text = "0.1";
+            this.lblVersion.Text = "0.2";
             // 
             // lblVisit
             // 
@@ -344,12 +348,79 @@
             this.lblVisit.Text = "Visit this project on Github";
             this.lblVisit.Click += new System.EventHandler(this.lblVisit_Click);
             // 
+            // txtShell
+            // 
+            this.txtShell.AutoCompleteCustomSource.AddRange(new string[] {
+            "-ViewFile(Filename)",
+            "-GetMD5(Filename)",
+            "-DeleteFile(Filename)",
+            "-SetKeySize(Size)",
+            "-DeleteAllFiles()",
+            "-ClearConsole()",
+            "-RickRoll()"});
+            this.txtShell.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtShell.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtShell.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtShell.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
+            this.txtShell.Border.Color = System.Drawing.Color.DimGray;
+            this.txtShell.Border.HoverColor = System.Drawing.Color.DimGray;
+            this.txtShell.Border.HoverVisible = true;
+            this.txtShell.Border.Rounding = 6;
+            this.txtShell.Border.Thickness = 1;
+            this.txtShell.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.txtShell.Border.Visible = true;
+            this.txtShell.ButtonBorder.Color = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.txtShell.ButtonBorder.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(183)))), ((int)(((byte)(230)))));
+            this.txtShell.ButtonBorder.HoverVisible = true;
+            this.txtShell.ButtonBorder.Rounding = 6;
+            this.txtShell.ButtonBorder.Thickness = 1;
+            this.txtShell.ButtonBorder.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.txtShell.ButtonBorder.Visible = true;
+            this.txtShell.ButtonColor.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtShell.ButtonColor.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.txtShell.ButtonColor.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtShell.ButtonColor.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.txtShell.ButtonFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShell.ButtonIndent = 3;
+            this.txtShell.ButtonText = "visualButton";
+            this.txtShell.ButtonVisible = false;
+            this.txtShell.ForeColor = System.Drawing.Color.White;
+            this.txtShell.Image = null;
+            this.txtShell.ImageSize = new System.Drawing.Size(16, 16);
+            this.txtShell.ImageVisible = false;
+            this.txtShell.ImageWidth = 35;
+            this.txtShell.Location = new System.Drawing.Point(12, 181);
+            this.txtShell.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.txtShell.Name = "txtShell";
+            this.txtShell.PasswordChar = '\0';
+            this.txtShell.ReadOnly = false;
+            this.txtShell.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txtShell.Size = new System.Drawing.Size(173, 23);
+            this.txtShell.TabIndex = 12;
+            this.txtShell.TextBoxWidth = 163;
+            this.txtShell.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.txtShell.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtShell.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtShell.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtShell.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.txtShell.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.txtShell.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.txtShell.Watermark.Active = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.txtShell.Watermark.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtShell.Watermark.Inactive = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(211)))), ((int)(((byte)(211)))));
+            this.txtShell.Watermark.Text = "Watermark text";
+            this.txtShell.Watermark.Visible = false;
+            this.txtShell.WordWrap = true;
+            this.txtShell.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShell_KeyDown);
+            this.txtShell.TextChanged += new System.EventHandler(this.txtShell_TextChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(416, 223);
+            this.Controls.Add(this.txtShell);
             this.Controls.Add(this.lblVisit);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblConsole);
@@ -387,6 +458,7 @@
         private System.Windows.Forms.Label lblConsole;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblVisit;
+        private VisualPlus.Toolkit.Controls.Editors.VisualTextBox txtShell;
     }
 }
 

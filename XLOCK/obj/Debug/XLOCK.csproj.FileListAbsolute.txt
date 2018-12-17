@@ -10,3 +10,14 @@ C:\Users\dhuin\source\repos\XLOCK\XLOCK\obj\Debug\XLOCK.csproj.CoreCompileInputs
 C:\Users\dhuin\source\repos\XLOCK\XLOCK\obj\Debug\XLOCK.csproj.CopyComplete
 C:\Users\dhuin\source\repos\XLOCK\XLOCK\obj\Debug\XLOCK.exe
 C:\Users\dhuin\source\repos\XLOCK\XLOCK\obj\Debug\XLOCK.pdb
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.Main.resources
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.Properties.Resources.resources
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.csproj.GenerateResource.cache
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.csproj.CoreCompileInputs.cache
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\bin\Debug\XLOCK.exe.config
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\bin\Debug\XLOCK.exe
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\bin\Debug\XLOCK.pdb
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\bin\Debug\Rijndael256.dll
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.csproj.CopyComplete
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.exe
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.pdb
