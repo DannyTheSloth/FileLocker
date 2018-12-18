@@ -31,6 +31,8 @@ Start by typing in '-' into the command line located under the console, as the d
 
 -ViewFile(Filename) *Opens file with default opening program in XLOCKFiles folder in case the open selected file does not work*
 
+-SetKeySize(Keysize) *Sets encryption key size to either 256, 192, or 128.*
+
 -ClearConsole() *Clears console*
 
 -RickRoll() *Plays Never Gonna Give You Up By Rick Astley*
