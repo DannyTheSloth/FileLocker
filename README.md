@@ -35,7 +35,7 @@ Start by typing in '-' into the command line located under the console, as the d
 
 -ClearConsole() *Clears console*
 
--HideFolder() *Hide/unhide folder (work in-progess)*
+-HideFolder() *Hide/unhide folder (work in-progress)*
 
 -RickRoll() *Plays Never Gonna Give You Up By Rick Astley*
 
