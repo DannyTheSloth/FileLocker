@@ -21,3 +21,5 @@ C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\bin\Debug\Rijndael256.dll
 C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.csproj.CopyComplete
 C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.exe
 C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.pdb
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\obj\Debug\XLOCK.csprojAssemblyReference.cache
+C:\Users\dhuin\Desktop\Projects\C#\XLOCK\XLOCK\bin\Debug\nClam.dll

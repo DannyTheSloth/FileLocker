@@ -44,6 +44,8 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblVisit = new System.Windows.Forms.Label();
             this.txtShell = new VisualPlus.Toolkit.Controls.Editors.VisualTextBox();
+            this.btnConsole = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
+            this.btnDeleteAll = new VisualPlus.Toolkit.Controls.Interactivity.VisualButton();
             this.SuspendLayout();
             // 
             // lbFiles
@@ -65,10 +67,10 @@
             this.lbFiles.ItemLineAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.ItemNormal = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
             this.lbFiles.ItemSelected = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(62)))));
-            this.lbFiles.Location = new System.Drawing.Point(198, 93);
+            this.lbFiles.Location = new System.Drawing.Point(301, 93);
             this.lbFiles.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.lbFiles.Name = "lbFiles";
-            this.lbFiles.Size = new System.Drawing.Size(205, 111);
+            this.lbFiles.Size = new System.Drawing.Size(406, 151);
             this.lbFiles.TabIndex = 0;
             this.lbFiles.Text = "Files";
             this.lbFiles.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
@@ -78,6 +80,7 @@
             this.lbFiles.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
             this.lbFiles.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.lbFiles.SelectedIndexChanged += new System.EventHandler(this.lbFiles_SelectedIndexChanged);
             this.lbFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.FileDropped);
             this.lbFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.lbFiles_DragEnter);
             this.lbFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbFiles_KeyDown);
@@ -98,12 +101,12 @@
             this.btnDecrypt.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnDecrypt.ForeColor = System.Drawing.Color.White;
             this.btnDecrypt.Image = null;
-            this.btnDecrypt.Location = new System.Drawing.Point(101, 51);
+            this.btnDecrypt.Location = new System.Drawing.Point(108, 51);
             this.btnDecrypt.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnDecrypt.Name = "btnDecrypt";
-            this.btnDecrypt.Size = new System.Drawing.Size(84, 23);
+            this.btnDecrypt.Size = new System.Drawing.Size(91, 23);
             this.btnDecrypt.TabIndex = 1;
-            this.btnDecrypt.Text = "Decrypt";
+            this.btnDecrypt.Text = "Unlock";
             this.btnDecrypt.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.btnDecrypt.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.btnDecrypt.TextStyle.Enabled = System.Drawing.Color.White;
@@ -133,9 +136,9 @@
             this.btnEncrypt.Location = new System.Drawing.Point(12, 51);
             this.btnEncrypt.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(86, 23);
+            this.btnEncrypt.Size = new System.Drawing.Size(91, 23);
             this.btnEncrypt.TabIndex = 2;
-            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.Text = "Lock";
             this.btnEncrypt.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.btnEncrypt.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.btnEncrypt.TextStyle.Enabled = System.Drawing.Color.White;
@@ -183,9 +186,9 @@
             this.txtPassword.PasswordChar = '\0';
             this.txtPassword.ReadOnly = false;
             this.txtPassword.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtPassword.Size = new System.Drawing.Size(173, 23);
+            this.txtPassword.Size = new System.Drawing.Size(283, 23);
             this.txtPassword.TabIndex = 3;
-            this.txtPassword.TextBoxWidth = 163;
+            this.txtPassword.TextBoxWidth = 273;
             this.txtPassword.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.txtPassword.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPassword.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -199,6 +202,7 @@
             this.txtPassword.Watermark.Text = "Watermark text";
             this.txtPassword.Watermark.Visible = false;
             this.txtPassword.WordWrap = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // lblEPassword
             // 
@@ -206,9 +210,9 @@
             this.lblEPassword.ForeColor = System.Drawing.Color.White;
             this.lblEPassword.Location = new System.Drawing.Point(9, 6);
             this.lblEPassword.Name = "lblEPassword";
-            this.lblEPassword.Size = new System.Drawing.Size(109, 13);
+            this.lblEPassword.Size = new System.Drawing.Size(75, 13);
             this.lblEPassword.TabIndex = 4;
-            this.lblEPassword.Text = "Encryption Password:";
+            this.lblEPassword.Text = "File Password:";
             // 
             // txtConsole
             // 
@@ -229,7 +233,7 @@
             this.txtConsole.ReadOnly = true;
             this.txtConsole.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.txtConsole.ShowSelectionMargin = false;
-            this.txtConsole.Size = new System.Drawing.Size(173, 82);
+            this.txtConsole.Size = new System.Drawing.Size(283, 122);
             this.txtConsole.TabIndex = 5;
             this.txtConsole.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.txtConsole.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -243,7 +247,7 @@
             // 
             this.lblFiles.AutoSize = true;
             this.lblFiles.ForeColor = System.Drawing.Color.White;
-            this.lblFiles.Location = new System.Drawing.Point(195, 77);
+            this.lblFiles.Location = new System.Drawing.Point(298, 77);
             this.lblFiles.Name = "lblFiles";
             this.lblFiles.Size = new System.Drawing.Size(31, 13);
             this.lblFiles.TabIndex = 6;
@@ -269,10 +273,10 @@
             this.btnOpenFile.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnOpenFile.ForeColor = System.Drawing.Color.White;
             this.btnOpenFile.Image = null;
-            this.btnOpenFile.Location = new System.Drawing.Point(198, 51);
+            this.btnOpenFile.Location = new System.Drawing.Point(301, 22);
             this.btnOpenFile.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnOpenFile.Name = "btnOpenFile";
-            this.btnOpenFile.Size = new System.Drawing.Size(205, 23);
+            this.btnOpenFile.Size = new System.Drawing.Size(199, 23);
             this.btnOpenFile.TabIndex = 7;
             this.btnOpenFile.Text = "Open Selected File";
             this.btnOpenFile.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -301,10 +305,10 @@
             this.btnOpenFolder.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnOpenFolder.ForeColor = System.Drawing.Color.White;
             this.btnOpenFolder.Image = null;
-            this.btnOpenFolder.Location = new System.Drawing.Point(198, 22);
+            this.btnOpenFolder.Location = new System.Drawing.Point(506, 22);
             this.btnOpenFolder.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(205, 23);
+            this.btnOpenFolder.Size = new System.Drawing.Size(201, 23);
             this.btnOpenFolder.TabIndex = 8;
             this.btnOpenFolder.Text = "Open Folder";
             this.btnOpenFolder.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -331,7 +335,7 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.ForeColor = System.Drawing.Color.White;
-            this.lblVersion.Location = new System.Drawing.Point(381, 207);
+            this.lblVersion.Location = new System.Drawing.Point(685, 247);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(22, 13);
             this.lblVersion.TabIndex = 10;
@@ -341,7 +345,7 @@
             // 
             this.lblVisit.AutoSize = true;
             this.lblVisit.ForeColor = System.Drawing.Color.White;
-            this.lblVisit.Location = new System.Drawing.Point(9, 207);
+            this.lblVisit.Location = new System.Drawing.Point(9, 247);
             this.lblVisit.Name = "lblVisit";
             this.lblVisit.Size = new System.Drawing.Size(129, 13);
             this.lblVisit.TabIndex = 11;
@@ -357,7 +361,11 @@
             "-SetKeySize(Size)",
             "-DeleteAllFiles()",
             "-ClearConsole()",
-            "-RickRoll()"});
+            "-RickRoll()",
+            "-HideFolder()",
+            "-Empty()",
+            "-Empty()",
+            "-Empty()"});
             this.txtShell.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtShell.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtShell.BackColorState.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
@@ -389,15 +397,15 @@
             this.txtShell.ImageSize = new System.Drawing.Size(16, 16);
             this.txtShell.ImageVisible = false;
             this.txtShell.ImageWidth = 35;
-            this.txtShell.Location = new System.Drawing.Point(12, 181);
+            this.txtShell.Location = new System.Drawing.Point(12, 221);
             this.txtShell.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
             this.txtShell.Name = "txtShell";
             this.txtShell.PasswordChar = '\0';
             this.txtShell.ReadOnly = false;
             this.txtShell.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txtShell.Size = new System.Drawing.Size(173, 23);
+            this.txtShell.Size = new System.Drawing.Size(283, 23);
             this.txtShell.TabIndex = 12;
-            this.txtShell.TextBoxWidth = 163;
+            this.txtShell.TextBoxWidth = 273;
             this.txtShell.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
             this.txtShell.TextStyle.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtShell.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -414,12 +422,78 @@
             this.txtShell.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtShell_KeyDown);
             this.txtShell.TextChanged += new System.EventHandler(this.txtShell_TextChanged);
             // 
+            // btnConsole
+            // 
+            this.btnConsole.BackColorState.Disabled = System.Drawing.Color.Empty;
+            this.btnConsole.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
+            this.btnConsole.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(57)))));
+            this.btnConsole.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(57)))));
+            this.btnConsole.Border.Color = System.Drawing.Color.DimGray;
+            this.btnConsole.Border.HoverColor = System.Drawing.Color.DimGray;
+            this.btnConsole.Border.HoverVisible = true;
+            this.btnConsole.Border.Rounding = 6;
+            this.btnConsole.Border.Thickness = 1;
+            this.btnConsole.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.btnConsole.Border.Visible = true;
+            this.btnConsole.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnConsole.ForeColor = System.Drawing.Color.White;
+            this.btnConsole.Image = null;
+            this.btnConsole.Location = new System.Drawing.Point(204, 51);
+            this.btnConsole.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.btnConsole.Name = "btnConsole";
+            this.btnConsole.Size = new System.Drawing.Size(91, 23);
+            this.btnConsole.TabIndex = 13;
+            this.btnConsole.Text = "Clear Console";
+            this.btnConsole.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.btnConsole.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.btnConsole.TextStyle.Enabled = System.Drawing.Color.White;
+            this.btnConsole.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnConsole.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnConsole.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.btnConsole.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.btnConsole.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnConsole.Click += new System.EventHandler(this.visualButton1_Click);
+            // 
+            // btnDeleteAll
+            // 
+            this.btnDeleteAll.BackColorState.Disabled = System.Drawing.Color.Empty;
+            this.btnDeleteAll.BackColorState.Enabled = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(43)))), ((int)(((byte)(45)))));
+            this.btnDeleteAll.BackColorState.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(57)))));
+            this.btnDeleteAll.BackColorState.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(57)))));
+            this.btnDeleteAll.Border.Color = System.Drawing.Color.DimGray;
+            this.btnDeleteAll.Border.HoverColor = System.Drawing.Color.DimGray;
+            this.btnDeleteAll.Border.HoverVisible = true;
+            this.btnDeleteAll.Border.Rounding = 6;
+            this.btnDeleteAll.Border.Thickness = 1;
+            this.btnDeleteAll.Border.Type = VisualPlus.Enumerators.ShapeTypes.Rounded;
+            this.btnDeleteAll.Border.Visible = true;
+            this.btnDeleteAll.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnDeleteAll.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteAll.Image = null;
+            this.btnDeleteAll.Location = new System.Drawing.Point(301, 51);
+            this.btnDeleteAll.MouseState = VisualPlus.Enumerators.MouseStates.Normal;
+            this.btnDeleteAll.Name = "btnDeleteAll";
+            this.btnDeleteAll.Size = new System.Drawing.Size(406, 23);
+            this.btnDeleteAll.TabIndex = 15;
+            this.btnDeleteAll.Text = "Delete All Files ";
+            this.btnDeleteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.btnDeleteAll.TextStyle.Disabled = System.Drawing.Color.FromArgb(((int)(((byte)(131)))), ((int)(((byte)(129)))), ((int)(((byte)(129)))));
+            this.btnDeleteAll.TextStyle.Enabled = System.Drawing.Color.White;
+            this.btnDeleteAll.TextStyle.Hover = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDeleteAll.TextStyle.Pressed = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnDeleteAll.TextStyle.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteAll.TextStyle.TextLineAlignment = System.Drawing.StringAlignment.Center;
+            this.btnDeleteAll.TextStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(35)))));
-            this.ClientSize = new System.Drawing.Size(416, 223);
+            this.ClientSize = new System.Drawing.Size(719, 265);
+            this.Controls.Add(this.btnDeleteAll);
+            this.Controls.Add(this.btnConsole);
             this.Controls.Add(this.txtShell);
             this.Controls.Add(this.lblVisit);
             this.Controls.Add(this.lblVersion);
@@ -459,6 +533,8 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblVisit;
         private VisualPlus.Toolkit.Controls.Editors.VisualTextBox txtShell;
+        private VisualPlus.Toolkit.Controls.Interactivity.VisualButton btnConsole;
+        private VisualPlus.Toolkit.Controls.Interactivity.VisualButton btnDeleteAll;
     }
 }
 

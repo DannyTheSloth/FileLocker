@@ -75,12 +75,18 @@
     <ManifestCertificateThumbprint>1D9170BF16B5A0DE0E7E7E4AE5E7279228D6749C</ManifestCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="nClam, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\nClam.4.0.1\lib\net45\nClam.dll</HintPath>
+    </Reference>
     <Reference Include="Rijndael256, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Rijndael256.3.2.0\lib\net452\Rijndael256.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
+    <Reference Include="System.IO" />
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using Rijndael = Rijndael256.Rijndael;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace XLOCK
 {
@@ -71,6 +72,10 @@ namespace XLOCK
                 {
                     lbFiles.Items.RemoveAt(itemnum);
                 }
+                if (File.Exists(FilePath + "XLOCKSettings.txt"))
+                {
+                    lbFiles.Items.Remove("XLOCKSettings.txt");
+                }
             }
         }
         private void btnEncrypt_Click(object sender, EventArgs e)
@@ -79,10 +84,9 @@ namespace XLOCK
             try { ToEncrypt = FilePath + lbFiles.SelectedItem.ToString(); }
             catch (Exception) { MessageBox.Show("You must select an item to encrypt or decrypt!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (string.IsNullOrWhiteSpace(txtPassword.Text)) { MessageBox.Show("You must enter a password to decrypt or encrypt files!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-            if (txtPassword.Text.Length < 6) { DialogResult dr = MessageBox.Show("Are you sure you would like to use this password? Any password less than 6 characters is deemed unsecure.", "Password Unsecure", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation); if (dr == DialogResult.No) { return; } }
             string Password = txtPassword.Text;
-            string Output = FilePath + lbFiles.SelectedItem.ToString() + ".encrypted";
-            if (Path.GetExtension(ToEncrypt).ToLower() == ".encrypted") { MessageBox.Show("File is already encrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } else { }
+            string Output = FilePath + lbFiles.SelectedItem.ToString() + ".locked";
+            if (Path.GetExtension(ToEncrypt).ToLower() == ".locked") { MessageBox.Show("File is already encrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; } else { }
             Rijndael.Encrypt(ToEncrypt, Output, txtPassword.Text, KS);
             File.Delete(ToEncrypt);
             WriteToConsole("Encrypted file successfully");
@@ -97,7 +101,7 @@ namespace XLOCK
                 catch (Exception) { MessageBox.Show("You must select an item to encrypt or decrypt!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                 if (string.IsNullOrWhiteSpace(txtPassword.Text)) { MessageBox.Show("You must enter a password to decrypt or encrypt files!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                 string Password = txtPassword.Text;
-                if (Path.GetExtension(ToDecrypt).ToLower() == ".encrypted") { } else { MessageBox.Show("File is already decrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+                if (Path.GetExtension(ToDecrypt).ToLower() == ".locked") { } else { MessageBox.Show("File is already decrypted!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                 string Output = FilePath + Path.GetFileNameWithoutExtension(ToDecrypt);              
                 Rijndael.Decrypt(ToDecrypt, Output, txtPassword.Text, KS);
                 File.Delete(ToDecrypt);
@@ -130,8 +134,22 @@ namespace XLOCK
         {
             Process.Start("https://github.com/DannyTheSloth/XLock-File-Locker");
         }
+        //Substring code by artfulhacker 
+        public string GetSubstringByString(string a, string b, string c)
+        {
+            return c.Substring((c.IndexOf(a) + a.Length), (c.IndexOf(b) - c.IndexOf(a) - a.Length));
+        }
         private void CheckCommand(string Command)
         {
+            DirectoryInfo DI = new DirectoryInfo(FilePath);
+            if (Command.Contains("-HideFolder()"))
+            {
+                if (!DI.Attributes.HasFlag(FileAttributes.Hidden))
+                {
+                    DI.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+                    WriteToConsole("XLOCKFiles set to hidden");
+                } else { DI.Attributes = FileAttributes.Directory | FileAttributes.Normal; WriteToConsole("XLOCKFiles set to normal"); }
+            } else
             if (Command.Contains("-ViewFile") && Command.Contains("(") && Command.Contains(")"))
             {
                 foreach (var item in lbFiles.Items)
@@ -243,7 +261,6 @@ namespace XLOCK
         }
         private void txtShell_TextChanged(object sender, EventArgs e)
         {
-
         }
         private void FileDropped(object sender, DragEventArgs e)
         {
@@ -259,5 +276,38 @@ namespace XLOCK
         {
             e.Effect = DragDropEffects.Copy;
         }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void lbFiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void visualButton1_Click(object sender, EventArgs e)
+        {
+            txtConsole.Text = "";
+        }
+
+        private void btnDeleteAll_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure you would like to delete all the files in the XLOCKFiles directory?", "File Deletion Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                DirectoryInfo Files = new DirectoryInfo(FilePath);
+                foreach (var file in Files.GetFiles())
+                {
+                    WriteToConsole("Deleted " + Path.GetFileName(file.FullName).ToString());
+                    File.Delete(file.FullName);
+                }
+            }
+            else
+            { 
+                    return;
+            }
+        }
+
     }
 }
